@@ -1,21 +1,25 @@
-<div class="list-group my-2">
-  <a
-    [routerLink]="['/restaurants', restaurant.id]"
-    class="list-group-item list-group-item-action text-break"
-    *ngFor="let restaurant of restaurants"
-  >
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">{{ restaurant.name }}</h5>
-      <small class="text-success">{{
-        restaurant.hasDelivery ? "Delivery" : ""
-      }}</small>
-    </div>
-    <p class="mb-1">
-      {{ restaurant.address.city }}
-    </p>
-    <small>{{ restaurant.category }}</small>
-  </a>
-</div>
+<div class="d-flex flex-column">
+  <div class="list-group my-3">
+    <a
+      [routerLink]="['/restaurants', restaurant.id]"
+      class="list-group-item list-group-item-action text-break"
+      *ngFor="let restaurant of restaurants"
+    >
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{ restaurant.name }}</h5>
+        <small class="text-success">{{
+          restaurant.hasDelivery ? "Delivery" : ""
+        }}</small>
+      </div>
+      <p class="mb-1">
+        {{ restaurant.address.city }}
+      </p>
+      <small>{{ restaurant.category }}</small>
+    </a>
+  </div>
+  
+  <div class="d-flex justify-content-center mb-2">
+    <app-pagination></app-pagination>
 
-<p>Pagination, filters etc</p>
-<!-- <app-pagination></app-pagination> -->
+  </div>
+</div>

@@ -9,13 +9,15 @@ import { HeaderComponent } from './header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { RestaurantsListComponent } from './restaurants/restaurants-list/restaurants-list.component';
+import { PaginationComponent } from './restaurants/restaurants-list/pagination/pagination.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     RestaurantsComponent,
-    RestaurantsListComponent
+    RestaurantsListComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
