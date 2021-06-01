@@ -1,41 +1,95 @@
 <div class="row">
   <div class="col-12 mb-4">
-    <form>
-      <div class="mb-4">
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+      <div class="my-5">
         <mdb-form-control>
-          <input mdbInput type="text" id="name" class="form-control" />
+          <input
+            [mdbValidate]="true"
+            mdbInput
+            type="text"
+            id="name"
+            class="form-control"
+            formControlName="name"
+          />
           <label mdbLabel class="form-label" for="name">Restaurant name</label>
+          <span
+            *ngIf="
+              searchForm.get('name').invalid && searchForm.get('name').touched
+            "
+          >
+            <mdb-error *ngIf="searchForm.get('name').hasError('maxlength')"
+              >{{searchForm.get('name')}}</mdb-error
+            >
+          </span>
         </mdb-form-control>
       </div>
-      <div class="mb-4">
+      <div class="my-5">
         <mdb-form-control>
-          <input mdbInput type="text" id="city" class="form-control" />
+          <input
+            [mdbValidate]="true"
+            mdbInput
+            type="text"
+            id="city"
+            class="form-control"
+            formControlName="city"
+          />
           <label mdbLabel class="form-label" for="city">City</label>
+          <span
+            *ngIf="
+              searchForm.get('city').invalid && searchForm.get('city').touched
+            "
+          >
+            <mdb-error *ngIf="searchForm.get('city').hasError('maxlength')"
+              >Name must have maximum 35 characters!</mdb-error
+            >
+          </span>
         </mdb-form-control>
       </div>
       <div class="mb-4">
         <mdb-form-control>
-          <input mdbInput type="text" id="category" class="form-control" />
+          <input
+            [mdbValidate]="true"
+            mdbInput
+            type="text"
+            id="category"
+            class="form-control"
+            formControlName="category"
+          />
           <label mdbLabel class="form-label" for="category">Category</label>
+          <span
+            *ngIf="
+              searchForm.get('category').invalid && searchForm.get('category').touched
+            "
+          >
+            <mdb-error *ngIf="searchForm.get('category').hasError('maxlength')"
+              >Name must have maximum 50 characters!</mdb-error
+            >
+          </span>
         </mdb-form-control>
       </div>
-      <div class="form-check mb-4 d-flex justify-content-center">
+      <div class="form-check mb-4 mt-2 d-flex justify-content-center">
         <input
           mdbCheckbox
           class="form-check-input"
           type="checkbox"
           value=""
           id="delivery"
+          formControlName="delivery"
         />
         <label class="form-check-label ms-2" for="delivery"> Delivery </label>
       </div>
       <div class="row">
         <div class="col-12 d-flex justify-content-between">
-          <button type="submit" class="btn btn-primary mb-4">Search</button>
+          <button
+            type="submit"
+            class="btn btn-primary mb-4"
+            [disabled]="!searchForm.valid"
+          >
+            Search
+          </button>
           <button type="button" class="btn btn-warning mb-4">Reset</button>
         </div>
       </div>
     </form>
-    
   </div>
 </div>
