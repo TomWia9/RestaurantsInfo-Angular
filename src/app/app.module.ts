@@ -7,11 +7,15 @@ import { MdbModule } from 'mdb-angular-ui-kit';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { RestaurantsListComponent } from './restaurants/restaurants-list/restaurants-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    RestaurantsComponent,
+    RestaurantsListComponent
   ],
   imports: [
     BrowserModule,
