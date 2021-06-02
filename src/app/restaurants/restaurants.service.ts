@@ -12,6 +12,7 @@ export class RestaurantsService {
 
   private restaurants: Restaurant[] = [];
   restaurantsChanged = new Subject<Restaurant[]>();
+  errorCatched = new Subject<string>();
 
   getRestaurants(): Restaurant[] {
     return this.restaurants.slice();
@@ -21,13 +22,21 @@ export class RestaurantsService {
     let params: HttpParams = this.setParams(restaurantsParams);
 
     this.fetchRestaurants(params).subscribe(
-      (restaurants) => {
+      (restaurants: Restaurant[]) => {
         console.log(restaurants);
         this.restaurants = restaurants;
         this.restaurantsChanged.next(restaurants.slice());
       },
       (error) => {
         console.log(error);
+        this.errorCatched.next(
+          'An error occurred while loading the restaurants'
+        );
+        if (error.status === 401) {
+          console.log('401');
+
+          //TODO redirect to /auth/login
+        }
       }
     );
   }

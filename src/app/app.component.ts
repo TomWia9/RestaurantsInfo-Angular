@@ -1,18 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { RestaurantParams } from './restaurants/restaurants-params';
-import { RestaurantsService } from './restaurants/restaurants.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-
-  constructor(private restaurantsService: RestaurantsService){}
-
-  ngOnInit(): void {
-    //get first page of all restaurants from backend 
-    this.restaurantsService.setRestaurants(new RestaurantParams(4,1));
-  }
-}
+export class AppComponent {}

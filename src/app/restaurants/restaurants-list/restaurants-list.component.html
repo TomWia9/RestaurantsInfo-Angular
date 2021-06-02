@@ -1,4 +1,7 @@
-<div class="d-flex flex-column">
+<div class="alert alert-danger" *ngIf="error" role="alert">
+  {{ error }}
+</div>
+<div class="d-flex flex-column" *ngIf="!error">
   <div class="list-group my-3">
     <a
       [routerLink]="['/restaurants', restaurant.id]"
@@ -17,9 +20,8 @@
       <small>{{ restaurant.category }}</small>
     </a>
   </div>
-  
+
   <div class="d-flex justify-content-center mb-2">
     <app-pagination></app-pagination>
-
   </div>
 </div>
