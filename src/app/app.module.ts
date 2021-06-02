@@ -12,6 +12,7 @@ import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { RestaurantsListComponent } from './restaurants/restaurants-list/restaurants-list.component';
 import { PaginationComponent } from './restaurants/restaurants-list/pagination/pagination.component';
 import { AdvancedSearchComponent } from './restaurants/advanced-search/advanced-search.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AdvancedSearchComponent } from './restaurants/advanced-search/advanced-
     RestaurantsComponent,
     RestaurantsListComponent,
     PaginationComponent,
-    AdvancedSearchComponent
+    AdvancedSearchComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
