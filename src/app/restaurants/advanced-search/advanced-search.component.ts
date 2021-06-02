@@ -48,4 +48,9 @@ export class AdvancedSearchComponent implements OnInit {
 
     this.restaurantsService.setRestaurants(params);
   }
+
+  onReset() {
+    this.restaurantsService.setRestaurants(new RestaurantParams(4, 1));
+    this.searchForm.reset();
+  }
 }
