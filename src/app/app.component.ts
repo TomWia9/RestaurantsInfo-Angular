@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RestaurantParams } from './restaurants/restaurants-params';
 import { RestaurantsService } from './restaurants/restaurants.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class AppComponent implements OnInit {
   constructor(private restaurantsService: RestaurantsService){}
 
   ngOnInit(): void {
-    //get all (1 page actually) restaurants from backend without any params
-    this.restaurantsService.setRestaurants();
+    //get first page of all restaurants from backend 
+    this.restaurantsService.setRestaurants(new RestaurantParams(4,1));
   }
 }
