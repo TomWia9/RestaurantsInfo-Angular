@@ -22,7 +22,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     RestaurantsListComponent,
     PaginationComponent,
     AdvancedSearchComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,9 +30,9 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     MdbModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -59,6 +59,16 @@ export class RestaurantsService {
     let params = new HttpParams();
     params = params.append('pageNumber', restaurantParams.pageNumber);
     params = params.append('pageSize', restaurantParams.pageSize);
+
+    if (restaurantParams.name !== undefined) {
+      params = params.append('name', restaurantParams.name);
+    }
+    if (restaurantParams.city !== undefined) {
+      params = params.append('city', restaurantParams.city);
+    }
+    if (restaurantParams.category !== undefined) {
+      params = params.append('category', restaurantParams.category);
+    }
     if (restaurantParams.hasDelivery !== undefined) {
       params = params.append('hasDelivery', restaurantParams.hasDelivery);
     }
