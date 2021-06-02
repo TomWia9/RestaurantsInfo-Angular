@@ -18,7 +18,7 @@
             "
           >
             <mdb-error *ngIf="searchForm.get('name').hasError('maxlength')"
-              >{{searchForm.get('name')}}</mdb-error
+              >Name must have maximum 35 characters!</mdb-error
             >
           </span>
         </mdb-form-control>
@@ -40,7 +40,7 @@
             "
           >
             <mdb-error *ngIf="searchForm.get('city').hasError('maxlength')"
-              >Name must have maximum 35 characters!</mdb-error
+              >City must have maximum 35 characters!</mdb-error
             >
           </span>
         </mdb-form-control>
@@ -62,7 +62,7 @@
             "
           >
             <mdb-error *ngIf="searchForm.get('category').hasError('maxlength')"
-              >Name must have maximum 50 characters!</mdb-error
+              >Category must have maximum 50 characters!</mdb-error
             >
           </span>
         </mdb-form-control>
