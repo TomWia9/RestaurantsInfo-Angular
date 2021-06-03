@@ -6,10 +6,10 @@ import { RestaurantsService } from '../restaurants.service';
 @Component({
   selector: 'app-advanced-search',
   templateUrl: './advanced-search.component.html',
-  styleUrls: ['./advanced-search.component.scss'],
+  styleUrls: ['./advanced-search.component.scss']
 })
 export class AdvancedSearchComponent implements OnInit {
-  searchForm: any;
+  searchForm: FormGroup;
 
   constructor(private restaurantsService: RestaurantsService) {}
 
@@ -20,7 +20,7 @@ export class AdvancedSearchComponent implements OnInit {
       category: new FormControl(null, [Validators.maxLength(50)]),
       sortBy: new FormControl(null),
       sortDirection: new FormControl(null),
-      delivery: new FormControl(false),
+      delivery: new FormControl(false)
     });
   }
 
@@ -49,7 +49,7 @@ export class AdvancedSearchComponent implements OnInit {
     this.restaurantsService.setRestaurants(params);
   }
 
-  onReset() {
+  onReset(): void {
     this.restaurantsService.setRestaurants(new RestaurantParams(4, 1));
     this.searchForm.reset();
   }

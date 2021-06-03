@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { RestaurantParams } from '../restaurants-params';
 import { RestaurantsService } from '../restaurants.service';
 import { Restaurant } from './restaurant.model';
@@ -6,13 +7,13 @@ import { Restaurant } from './restaurant.model';
 @Component({
   selector: 'app-restaurants-list',
   templateUrl: './restaurants-list.component.html',
-  styleUrls: ['./restaurants-list.component.scss'],
+  styleUrls: ['./restaurants-list.component.scss']
 })
 export class RestaurantsListComponent implements OnInit, OnDestroy {
   restaurants: Restaurant[] = [];
   error = '';
-  restaurantsSubscription: any;
-  errorSubscription: any;
+  restaurantsSubscription: Subscription;
+  errorSubscription: Subscription;
   loading = false;
 
   constructor(private restaurantsService: RestaurantsService) {}
@@ -35,7 +36,7 @@ export class RestaurantsListComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.restaurantsSubscription.unsubscribe();
     this.errorSubscription.unsubscribe();
   }

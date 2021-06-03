@@ -3,12 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/restaurants', pathMatch: 'full'},
-  {path: 'restaurants', component: RestaurantsComponent}
+  { path: '', redirectTo: '/restaurants', pathMatch: 'full' },
+  { path: 'restaurants', component: RestaurantsComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

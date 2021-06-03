@@ -6,16 +6,16 @@ import { RestaurantsService } from '../restaurants/restaurants.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  searchForm: any;
+  searchForm: FormGroup;
 
   constructor(private restaurantsService: RestaurantsService) {}
 
   ngOnInit(): void {
     this.searchForm = new FormGroup({
-      restaurantName: new FormControl(null, Validators.required),
+      restaurantName: new FormControl(null, Validators.required)
     });
   }
 
