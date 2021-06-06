@@ -1,6 +1,7 @@
 import { HttpParams } from '@angular/common/http';
+import { Params } from '../shared/params';
 
-export class RestaurantParams {
+export class RestaurantParams implements Params {
   constructor(
     public pageSize: number,
     public pageNumber: number,
