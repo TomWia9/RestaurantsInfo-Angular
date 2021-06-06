@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchForm = new FormGroup({
-      restaurantName: new FormControl(null, Validators.required)
+      restaurantName: new FormControl('', Validators.required)
     });
   }
 
@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
         undefined,
         undefined,
         undefined,
-        this.searchForm.value.restaurantName
+        this.searchForm.value.restaurantName.trim()
       )
     );
     this.searchForm.reset();

@@ -19,7 +19,7 @@ export class RestaurantsService {
   }
 
   setRestaurants(restaurantsParams: RestaurantParams): void {
-    const params: HttpParams = this.setParams(restaurantsParams);
+    const params: HttpParams = restaurantsParams.getHttpParams();
 
     this.fetchRestaurants(params).subscribe(
       (restaurants: Restaurant[]) => {
@@ -53,35 +53,5 @@ export class RestaurantsService {
         params: params
       }
     );
-  }
-
-  private setParams(restaurantParams: RestaurantParams): HttpParams {
-    let params = new HttpParams();
-    params = params.append('pageNumber', restaurantParams.pageNumber);
-    params = params.append('pageSize', restaurantParams.pageSize);
-
-    if (restaurantParams.name !== undefined) {
-      params = params.append('name', restaurantParams.name);
-    }
-    if (restaurantParams.city !== undefined) {
-      params = params.append('city', restaurantParams.city);
-    }
-    if (restaurantParams.category !== undefined) {
-      params = params.append('category', restaurantParams.category);
-    }
-    if (restaurantParams.hasDelivery !== undefined) {
-      params = params.append('hasDelivery', restaurantParams.hasDelivery);
-    }
-    if (restaurantParams.sortDirection) {
-      params = params.append('sortDirection', restaurantParams.sortDirection);
-    }
-    if (restaurantParams.sortBy) {
-      params = params.append('sortBy', restaurantParams.sortBy);
-    }
-    if (restaurantParams.searchQuery) {
-      params = params.append('searchQuery', restaurantParams.searchQuery);
-    }
-
-    return params;
   }
 }
