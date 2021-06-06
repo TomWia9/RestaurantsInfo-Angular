@@ -12,17 +12,22 @@ import { Restaurant } from './restaurant.model';
 export class RestaurantsListComponent implements OnInit, OnDestroy {
   restaurants: Restaurant[] = [];
   error = '';
+  loading = false;
   restaurantsSubscription: Subscription;
   errorSubscription: Subscription;
-  loading = false;
+  loadingSubscription: Subscription;
 
   constructor(private restaurantsService: RestaurantsService) {}
 
   ngOnInit(): void {
+    this.loadingSubscription = this.restaurantsService.loading.subscribe(
+      (isLoading) => {
+        this.loading = isLoading;
+      }
+    );
+
     //get first page of all restaurants from backend
-    this.loading = true;
     this.restaurantsService.setRestaurants(new RestaurantParams(4, 1));
-    this.loading = false;
 
     this.restaurantsSubscription =
       this.restaurantsService.restaurantsChanged.subscribe((restaurants) => {
@@ -39,5 +44,6 @@ export class RestaurantsListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.restaurantsSubscription.unsubscribe();
     this.errorSubscription.unsubscribe();
+    this.loadingSubscription.unsubscribe();
   }
 }

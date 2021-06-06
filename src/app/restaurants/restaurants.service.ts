@@ -13,19 +13,21 @@ export class RestaurantsService {
   private restaurants: Restaurant[] = [];
   restaurantsChanged = new Subject<Restaurant[]>();
   errorCatched = new Subject<string>();
+  loading = new Subject<boolean>();
 
   getRestaurants(): Restaurant[] {
     return this.restaurants.slice();
   }
 
   setRestaurants(restaurantsParams: RestaurantParams): void {
+    this.loading.next(true);
     const params: HttpParams = restaurantsParams.getHttpParams();
 
     this.fetchRestaurants(params).subscribe(
       (restaurants: Restaurant[]) => {
-        console.log(restaurants);
         this.restaurants = restaurants;
         this.restaurantsChanged.next(restaurants.slice());
+        this.loading.next(false);
       },
       (error) => {
         console.log(error);
@@ -37,6 +39,7 @@ export class RestaurantsService {
 
           //TODO redirect to /auth/login
         }
+        this.loading.next(false);
       }
     );
   }
