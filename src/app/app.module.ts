@@ -14,6 +14,7 @@ import { PaginationComponent } from './restaurants/restaurants-list/pagination/p
 import { AdvancedSearchComponent } from './restaurants/advanced-search/advanced-search.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { DishesComponent } from './dishes/dishes.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     PaginationComponent,
     AdvancedSearchComponent,
     LoadingSpinnerComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    DishesComponent
   ],
   imports: [
     BrowserModule,
