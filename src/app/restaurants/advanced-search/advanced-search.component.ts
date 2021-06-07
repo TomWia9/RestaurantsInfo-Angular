@@ -36,11 +36,11 @@ export class AdvancedSearchComponent implements OnInit {
       this.searchForm.value.sortDirection
     );
 
-    this.restaurantsService.setRestaurants(params);
+    this.restaurantsService.getRestaurants(params);
   }
 
   onReset(): void {
-    this.restaurantsService.setRestaurants(new RestaurantParams(4, 1));
+    this.restaurantsService.getRestaurants(new RestaurantParams(4, 1));
     this.searchForm.reset();
   }
 }

@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
 
   onSearch(): void {
     //TODO depending on the route search for restaurants or dishes
-    this.restaurantsService.setRestaurants(
+    this.restaurantsService.getRestaurants(
       new RestaurantParams(
         4,
         1,

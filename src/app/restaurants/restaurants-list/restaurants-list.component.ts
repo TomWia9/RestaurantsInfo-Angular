@@ -28,12 +28,11 @@ export class RestaurantsListComponent implements OnInit, OnDestroy {
     );
 
     //get first page of all restaurants from backend
-    this.restaurantsService.setRestaurants(new RestaurantParams(4, 1));
+    this.restaurantsService.getRestaurants(new RestaurantParams(4, 1));
 
     this.restaurantsSubscription =
       this.restaurantsService.restaurantsChanged.subscribe((restaurants) => {
         this.restaurants = restaurants;
-        console.log(restaurants);
       });
 
     this.errorSubscription = this.restaurantsService.errorCatched.subscribe(

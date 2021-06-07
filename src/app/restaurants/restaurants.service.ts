@@ -17,16 +17,11 @@ import { RestaurantParams } from './restaurants-params';
 export class RestaurantsService {
   constructor(private http: HttpClient) {}
 
-  private restaurants: PagedList<Restaurant>;
   restaurantsChanged = new Subject<PagedList<Restaurant>>();
   errorCatched = new Subject<string>();
   loading = new Subject<boolean>();
 
-  getRestaurants(): Restaurant[] {
-    return this.restaurants.items.slice();
-  }
-
-  setRestaurants(restaurantsParams: RestaurantParams): void {
+  getRestaurants(restaurantsParams: RestaurantParams): void {
     this.loading.next(true);
     const params: HttpParams = restaurantsParams.getHttpParams();
 
@@ -35,7 +30,7 @@ export class RestaurantsService {
         const pagination = response.headers.get('X-Pagination');
         const paginationData: Pagination = JSON.parse(pagination);
 
-        this.restaurants = new PagedList<Restaurant>(
+        const restaurants = new PagedList<Restaurant>(
           response.body,
           paginationData.currentPage,
           paginationData.totalPages,
@@ -44,7 +39,7 @@ export class RestaurantsService {
           paginationData.hasNext
         );
 
-        this.restaurantsChanged.next(this.restaurants);
+        this.restaurantsChanged.next(restaurants);
         this.loading.next(false);
       },
       (error) => {
