@@ -10,6 +10,7 @@ import { RestaurantsService } from '../restaurants.service';
 })
 export class AdvancedSearchComponent implements OnInit {
   searchForm: FormGroup;
+  formInitialValues: unknown;
 
   constructor(private restaurantsService: RestaurantsService) {}
 
@@ -22,6 +23,7 @@ export class AdvancedSearchComponent implements OnInit {
       sortDirection: new FormControl(0),
       delivery: new FormControl(false)
     });
+    this.formInitialValues = this.searchForm.value;
   }
 
   onSearch(): void {
@@ -41,6 +43,6 @@ export class AdvancedSearchComponent implements OnInit {
 
   onReset(): void {
     this.restaurantsService.getRestaurants(new RestaurantParams(4, 1));
-    this.searchForm.reset();
+    this.searchForm.reset(this.formInitialValues);
   }
 }
