@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { PagedList } from 'src/app/shared/pagedList';
 import { RestaurantParams } from '../restaurants-params';
 import { RestaurantsService } from '../restaurants.service';
 import { Restaurant } from './restaurant.model';
@@ -10,7 +11,7 @@ import { Restaurant } from './restaurant.model';
   styleUrls: ['./restaurants-list.component.scss']
 })
 export class RestaurantsListComponent implements OnInit, OnDestroy {
-  restaurants: Restaurant[] = [];
+  restaurants: PagedList<Restaurant>;
   error = '';
   loading = false;
   restaurantsSubscription: Subscription;
@@ -32,6 +33,7 @@ export class RestaurantsListComponent implements OnInit, OnDestroy {
     this.restaurantsSubscription =
       this.restaurantsService.restaurantsChanged.subscribe((restaurants) => {
         this.restaurants = restaurants;
+        console.log(restaurants);
       });
 
     this.errorSubscription = this.restaurantsService.errorCatched.subscribe(

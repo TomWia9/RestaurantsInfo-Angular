@@ -1,6 +1,13 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpParams,
+  HttpResponse
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { PagedList } from '../shared/pagedList';
+import { Pagination } from '../shared/pagination';
 import { Restaurant } from './restaurants-list/restaurant.model';
 import { RestaurantParams } from './restaurants-params';
 
@@ -10,13 +17,13 @@ import { RestaurantParams } from './restaurants-params';
 export class RestaurantsService {
   constructor(private http: HttpClient) {}
 
-  private restaurants: Restaurant[] = [];
-  restaurantsChanged = new Subject<Restaurant[]>();
+  private restaurants: PagedList<Restaurant>;
+  restaurantsChanged = new Subject<PagedList<Restaurant>>();
   errorCatched = new Subject<string>();
   loading = new Subject<boolean>();
 
   getRestaurants(): Restaurant[] {
-    return this.restaurants.slice();
+    return this.restaurants.items.slice();
   }
 
   setRestaurants(restaurantsParams: RestaurantParams): void {
@@ -24,9 +31,20 @@ export class RestaurantsService {
     const params: HttpParams = restaurantsParams.getHttpParams();
 
     this.fetchRestaurants(params).subscribe(
-      (restaurants: Restaurant[]) => {
-        this.restaurants = restaurants;
-        this.restaurantsChanged.next(restaurants.slice());
+      (response: HttpResponse<Restaurant[]>) => {
+        const pagination = response.headers.get('X-Pagination');
+        const paginationData: Pagination = JSON.parse(pagination);
+
+        this.restaurants = new PagedList<Restaurant>(
+          response.body,
+          paginationData.currentPage,
+          paginationData.totalPages,
+          paginationData.totalCount,
+          paginationData.hasPrevious,
+          paginationData.hasNext
+        );
+
+        this.restaurantsChanged.next(this.restaurants);
         this.loading.next(false);
       },
       (error) => {
@@ -44,10 +62,11 @@ export class RestaurantsService {
     );
   }
 
-  fetchRestaurants(params: HttpParams): Observable<Restaurant[]> {
+  fetchRestaurants(params: HttpParams): Observable<HttpResponse<Restaurant[]>> {
     return this.http.get<Restaurant[]>(
       'https://localhost:5001/api/Restaurants',
       {
+        observe: 'response',
         //temp token
         headers: new HttpHeaders({
           Authorization:

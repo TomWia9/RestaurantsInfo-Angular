@@ -1,4 +1,6 @@
-export class PagedList<T> {
+import { Pagination } from './pagination';
+
+export class PagedList<T> implements Pagination {
   constructor(
     public items: T[] = [],
     public currentPage: number,
