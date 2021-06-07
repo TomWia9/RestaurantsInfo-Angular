@@ -1,48 +1,56 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">RestaurantsInfo</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        (click)="toggler.toggle()"
-        aria-controls="navbarToggler"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <i class="fas fa-bars"></i>
-      </button>
-      <div
-        class="collapse navbar-collapse"
-        id="navbarToggler"
-        mdbCollapse
-        #toggler="mdbCollapse"
-      >
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/restaurants" routerLinkActive="active">Restaurants</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-        </ul>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">RestaurantsInfo</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="toggler.toggle()"
+      aria-controls="navbarToggler"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+    <div
+      class="collapse navbar-collapse"
+      id="navbarToggler"
+      mdbCollapse
+      #toggler="mdbCollapse"
+    >
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/restaurants"
+            routerLinkActive="active"
+            >Restaurants</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+      </ul>
 
-        <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="d-flex input-group w-auto">
-          <input
-            type="search"
-            class="form-control"
-            placeholder="Search for restaurant"
-            aria-label="Search"
-            formControlName="restaurantName"
-          />
-          <button
-            class="btn btn-outline-primary"
-            type="submit"
-            data-mdb-ripple-color="dark"
-            [disabled]="!searchForm.valid"
-          >
-            Search
-          </button>
-        </form>
-      </div>
+      <form
+        [formGroup]="searchForm"
+        (ngSubmit)="onSearch()"
+        class="d-flex input-group w-auto"
+      >
+        <input
+          type="search"
+          class="form-control"
+          placeholder="Search for restaurant"
+          aria-label="Search"
+          formControlName="restaurantName"
+        />
+        <button
+          class="btn btn-outline-primary"
+          type="submit"
+          data-mdb-ripple-color="dark"
+          [disabled]="!searchForm.valid"
+        >
+          Search
+        </button>
+      </form>
     </div>
-  </nav>
+  </div>
+</nav>
