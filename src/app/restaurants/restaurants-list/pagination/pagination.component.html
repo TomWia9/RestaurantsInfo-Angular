@@ -1,30 +1,49 @@
 <nav>
   <ul class="pagination pagination-circle">
-    <li class="page-item" *ngIf="paginationData.hasPrevious">
+    <li
+      class="page-item"
+      [ngClass]="{ disabled: paginationData.currentPage === 1 }"
+    >
+      <a class="page-link" tabindex="-1" type="button" (click)="onChangePage(1)"
+        >First</a
+      >
+    </li>
+    <li class="page-item">
       <a
         class="page-link"
-        tabindex="-1"
         type="button"
-        (click)="onChangePage(-1)"
-        >Previous</a
+        (click)="onPreviousPage()"
+        *ngIf="paginationData.hasPrevious"
+        >{{ paginationData.currentPage - 1 }}</a
       >
     </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
     <li class="page-item active">
-      <a class="page-link" href="#"
-        >2 <span class="visually-hidden">(current)</span></a
+      <a class="page-link"
+        >{{ paginationData.currentPage }}
+        <span class="visually-hidden">(current)</span></a
       >
     </li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li
-      class="page-item d-flex align-items-end"
-      *ngIf="paginationData.currentPage !== paginationData.totalPages"
-    >
-      <span>...</span>
-      <a class="page-link">{{ paginationData.totalPages }}</a>
+    <li class="page-item">
+      <a
+        class="page-link"
+        type="button"
+        (click)="onNextPage()"
+        *ngIf="paginationData.hasNext"
+        >{{ paginationData.currentPage + 1 }}</a
+      >
     </li>
-    <li class="page-item" *ngIf="paginationData.hasNext">
-      <a class="page-link" type="button" (click)="onChangePage(1)">Next</a>
+    <li
+      class="page-item"
+      [ngClass]="{
+        disabled: paginationData.currentPage === paginationData.totalPages
+      }"
+    >
+      <a
+        class="page-link"
+        type="button"
+        (click)="onChangePage(paginationData.totalPages)"
+        >Last ({{ paginationData.totalPages }})</a
+      >
     </li>
   </ul>
 </nav>

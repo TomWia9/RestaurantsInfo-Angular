@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, Input } from '@angular/core';
 import { Pagination } from 'src/app/shared/pagination';
 import { RestaurantParams } from '../../restaurants-params';
 import { RestaurantsService } from '../../restaurants.service';
@@ -15,9 +14,18 @@ export class PaginationComponent {
 
   constructor(private restaurantsService: RestaurantsService) {}
 
-  onChangePage(direction: number): void {
-    const pageNumber = (this.paginationData.currentPage += direction);
+  onChangePage(pageNumber: number): void {
     this.restaurantsParams.pageNumber = pageNumber;
+    this.restaurantsService.getRestaurants(this.restaurantsParams);
+  }
+
+  onNextPage(): void {
+    this.restaurantsParams.pageNumber++;
+    this.restaurantsService.getRestaurants(this.restaurantsParams);
+  }
+
+  onPreviousPage(): void {
+    this.restaurantsParams.pageNumber--;
     this.restaurantsService.getRestaurants(this.restaurantsParams);
   }
 }
