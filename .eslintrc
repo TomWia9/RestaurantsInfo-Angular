@@ -9,6 +9,11 @@
     "prettier"
   ],
   "rules": {
-    "prettier/prettier": 1
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ]
   }
 }
