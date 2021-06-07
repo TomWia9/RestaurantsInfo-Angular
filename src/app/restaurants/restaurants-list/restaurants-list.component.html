@@ -26,10 +26,13 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" *ngIf="!error && !loading && restaurantsParams">
     <div class="col-12">
       <div class="d-flex justify-content-center mb-3">
-        <app-pagination></app-pagination>
+        <app-pagination
+          [paginationData]="getPaginationData()"
+          [restaurantsParams]="restaurantsParams"
+        ></app-pagination>
       </div>
     </div>
   </div>

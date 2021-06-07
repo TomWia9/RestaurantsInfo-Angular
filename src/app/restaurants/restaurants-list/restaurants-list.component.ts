@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PagedList } from 'src/app/shared/pagedList';
+import { Pagination } from 'src/app/shared/pagination';
 import { RestaurantParams } from '../restaurants-params';
 import { RestaurantsService } from '../restaurants.service';
 import { Restaurant } from './restaurant.model';
@@ -14,9 +15,11 @@ export class RestaurantsListComponent implements OnInit, OnDestroy {
   restaurants: PagedList<Restaurant>;
   error = '';
   loading = false;
+  restaurantsParams: RestaurantParams;
   restaurantsSubscription: Subscription;
   errorSubscription: Subscription;
   loadingSubscription: Subscription;
+  restaurantsParamsSubscription: Subscription;
 
   constructor(private restaurantsService: RestaurantsService) {}
 
@@ -26,6 +29,13 @@ export class RestaurantsListComponent implements OnInit, OnDestroy {
         this.loading = isLoading;
       }
     );
+
+    this.restaurantsParamsSubscription =
+      this.restaurantsService.paramsChanged.subscribe(
+        (params: RestaurantParams) => {
+          this.restaurantsParams = params;
+        }
+      );
 
     //get first page of all restaurants from backend
     this.restaurantsService.getRestaurants(new RestaurantParams(4, 1));
@@ -42,9 +52,20 @@ export class RestaurantsListComponent implements OnInit, OnDestroy {
     );
   }
 
+  getPaginationData(): Pagination {
+    return {
+      currentPage: this.restaurants.currentPage,
+      hasNext: this.restaurants.hasNext,
+      hasPrevious: this.restaurants.hasPrevious,
+      totalPages: this.restaurants.totalPages,
+      totalCount: this.restaurants.totalCount
+    };
+  }
+
   ngOnDestroy(): void {
     this.restaurantsSubscription.unsubscribe();
     this.errorSubscription.unsubscribe();
     this.loadingSubscription.unsubscribe();
+    this.restaurantsParamsSubscription.unsubscribe();
   }
 }

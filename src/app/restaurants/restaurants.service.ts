@@ -20,9 +20,11 @@ export class RestaurantsService {
   restaurantsChanged = new Subject<PagedList<Restaurant>>();
   errorCatched = new Subject<string>();
   loading = new Subject<boolean>();
+  paramsChanged = new Subject<RestaurantParams>();
 
   getRestaurants(restaurantsParams: RestaurantParams): void {
     this.loading.next(true);
+    this.paramsChanged.next(restaurantsParams);
     const params: HttpParams = restaurantsParams.getHttpParams();
 
     this.fetchRestaurants(params).subscribe(
