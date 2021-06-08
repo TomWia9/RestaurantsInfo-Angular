@@ -51,7 +51,6 @@ export class DishesListComponent implements OnInit, OnDestroy {
       (dishes: PagedList<Dish>) => {
         this.empty = dishes.totalCount === 0;
         this.dishes = dishes;
-        console.log(this.empty);
       }
     );
 
