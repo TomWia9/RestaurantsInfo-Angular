@@ -4,7 +4,10 @@
 <app-loading-spinner *ngIf="loading"></app-loading-spinner>
 <div class="row">
   <div class="col-12">
-    <h3>Dishes</h3>
+    <div class="d-flex justify-content-between mb-3">
+      <h3 class="me-1">Dishes</h3>
+      <app-dishes-search [restaurantId]="restaurantId"></app-dishes-search>
+    </div>
     <app-empty-list-info
       *ngIf="empty"
       message="Sorry, no dishes found"

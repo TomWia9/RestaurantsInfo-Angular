@@ -18,6 +18,7 @@ import { DishesComponent } from './dishes/dishes.component';
 import { RestaurantDetailsComponent } from './restaurants/restaurant-details/restaurant-details.component';
 import { DishesListComponent } from './dishes/dishes-list/dishes-list.component';
 import { EmptyListInfoComponent } from './shared/empty-list-info/empty-list-info.component';
+import { DishesSearchComponent } from './dishes/dishes-search/dishes-search.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { EmptyListInfoComponent } from './shared/empty-list-info/empty-list-info
     DishesComponent,
     RestaurantDetailsComponent,
     DishesListComponent,
-    EmptyListInfoComponent
+    EmptyListInfoComponent,
+    DishesSearchComponent
   ],
   imports: [
     BrowserModule,
