@@ -52,8 +52,6 @@ export class RestaurantsService {
           'An error occurred while loading the restaurants'
         );
         if (error.status === 401) {
-          console.log('401');
-
           //TODO redirect to /auth/login
         }
         this.loading.next(false);

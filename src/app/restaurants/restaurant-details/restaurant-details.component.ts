@@ -19,6 +19,5 @@ export class RestaurantDetailsComponent implements OnInit {
     this.restaurant = this.restaurantsService.getRestaurantById(
       this.route.snapshot.params['id']
     );
-    console.log(this.restaurant);
   }
 }
