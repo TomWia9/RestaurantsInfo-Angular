@@ -7,6 +7,7 @@ export class Restaurant {
     public description: string,
     public category: string,
     public hasDelivery: boolean,
+    public contactNumber: string,
     public contactEmail: string,
     public address: Address
   ) {}
