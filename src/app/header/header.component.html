@@ -39,9 +39,9 @@
         <input
           type="search"
           class="form-control"
-          placeholder="Search for restaurant"
+          [placeholder]="getSearchPlaceholder()"
           aria-label="Search"
-          formControlName="restaurantName"
+          formControlName="name"
         />
         <button
           class="btn btn-outline-primary"
