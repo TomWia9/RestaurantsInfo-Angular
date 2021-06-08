@@ -15,6 +15,7 @@ export class RestaurantsListComponent implements OnInit, OnDestroy {
   restaurants: PagedList<Restaurant>;
   error = '';
   loading = false;
+  empty = true;
   restaurantsParams: RestaurantParams;
   restaurantsSubscription: Subscription;
   errorSubscription: Subscription;
@@ -42,6 +43,7 @@ export class RestaurantsListComponent implements OnInit, OnDestroy {
 
     this.restaurantsSubscription =
       this.restaurantsService.restaurantsChanged.subscribe((restaurants) => {
+        this.empty = restaurants.totalCount === 0;
         this.restaurants = restaurants;
       });
 

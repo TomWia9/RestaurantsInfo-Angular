@@ -16,6 +16,7 @@ export class DishesListComponent implements OnInit, OnDestroy {
   restaurantId: string;
   error = '';
   loading = false;
+  empty = false;
   dishes: PagedList<Dish>;
   dishesParams: DishesParams;
   dishesSubscription: Subscription;
@@ -48,7 +49,9 @@ export class DishesListComponent implements OnInit, OnDestroy {
 
     this.dishesSubscription = this.dishesService.dishesChanged.subscribe(
       (dishes: PagedList<Dish>) => {
+        this.empty = dishes.totalCount === 0;
         this.dishes = dishes;
+        console.log(this.empty);
       }
     );
 

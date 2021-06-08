@@ -1,11 +1,16 @@
+<div class="alert alert-danger mb-2" *ngIf="error" role="alert">
+  {{ error }}
+</div>
+<app-loading-spinner *ngIf="loading"></app-loading-spinner>
 <div class="row">
   <div class="col-12">
     <h3>Dishes</h3>
-    <div class="alert alert-danger mb-2" *ngIf="error" role="alert">
-      {{ error }}
-    </div>
-    <app-loading-spinner *ngIf="loading"></app-loading-spinner>
-    <div class="d-flex flex-column" *ngIf="!error && !loading">
+    <app-empty-list-info
+      *ngIf="empty"
+      message="Sorry, no dishes found"
+    ></app-empty-list-info>
+
+    <div class="d-flex flex-column" *ngIf="!error && !loading && !empty">
       <div class="list-group my-3">
         <a
           [routerLink]="['/restaurants', restaurantId, '/dishes', dish.id]"
@@ -21,7 +26,7 @@
     </div>
   </div>
 
-  <div class="row" *ngIf="!error && !loading">
+  <div class="row" *ngIf="!error && !loading && !empty">
     <div class="col-12">
       <div class="d-flex justify-content-center mb-3">
         <app-pagination

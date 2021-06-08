@@ -17,6 +17,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { DishesComponent } from './dishes/dishes.component';
 import { RestaurantDetailsComponent } from './restaurants/restaurant-details/restaurant-details.component';
 import { DishesListComponent } from './dishes/dishes-list/dishes-list.component';
+import { EmptyListInfoComponent } from './shared/empty-list-info/empty-list-info.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { DishesListComponent } from './dishes/dishes-list/dishes-list.component'
     PageNotFoundComponent,
     DishesComponent,
     RestaurantDetailsComponent,
-    DishesListComponent
+    DishesListComponent,
+    EmptyListInfoComponent
   ],
   imports: [
     BrowserModule,

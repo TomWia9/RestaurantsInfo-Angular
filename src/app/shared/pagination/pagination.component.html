@@ -35,7 +35,9 @@
     <li
       class="page-item"
       [ngClass]="{
-        disabled: paginationData.currentPage === paginationData.totalPages
+        disabled:
+          paginationData.currentPage === paginationData.totalPages ||
+          paginationData.totalPages === 0
       }"
     >
       <a
