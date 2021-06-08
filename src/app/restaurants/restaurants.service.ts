@@ -17,6 +17,8 @@ import { RestaurantParams } from './restaurants-params';
 export class RestaurantsService {
   constructor(private http: HttpClient) {}
 
+  private restaurants: PagedList<Restaurant>;
+
   restaurantsChanged = new Subject<PagedList<Restaurant>>();
   errorCatched = new Subject<string>();
   loading = new Subject<boolean>();
@@ -32,7 +34,7 @@ export class RestaurantsService {
         const pagination = response.headers.get('X-Pagination');
         const paginationData: Pagination = JSON.parse(pagination);
 
-        const restaurants = new PagedList<Restaurant>(
+        this.restaurants = new PagedList<Restaurant>(
           response.body,
           paginationData.currentPage,
           paginationData.totalPages,
@@ -41,7 +43,7 @@ export class RestaurantsService {
           paginationData.hasNext
         );
 
-        this.restaurantsChanged.next(restaurants);
+        this.restaurantsChanged.next(this.restaurants);
         this.loading.next(false);
       },
       (error) => {
@@ -72,5 +74,9 @@ export class RestaurantsService {
         params: params
       }
     );
+  }
+
+  getRestaurantById(id: string): Restaurant {
+    return this.restaurants.items.find((r) => r.id === id);
   }
 }
