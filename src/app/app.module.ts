@@ -10,12 +10,13 @@ import { HeaderComponent } from './header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { RestaurantsListComponent } from './restaurants/restaurants-list/restaurants-list.component';
-import { PaginationComponent } from './restaurants/restaurants-list/pagination/pagination.component';
+import { PaginationComponent } from './shared/pagination/pagination.component';
 import { AdvancedSearchComponent } from './restaurants/advanced-search/advanced-search.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DishesComponent } from './dishes/dishes.component';
 import { RestaurantDetailsComponent } from './restaurants/restaurant-details/restaurant-details.component';
+import { DishesListComponent } from './dishes/dishes-list/dishes-list.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { RestaurantDetailsComponent } from './restaurants/restaurant-details/res
     LoadingSpinnerComponent,
     PageNotFoundComponent,
     DishesComponent,
-    RestaurantDetailsComponent
+    RestaurantDetailsComponent,
+    DishesListComponent
   ],
   imports: [
     BrowserModule,
