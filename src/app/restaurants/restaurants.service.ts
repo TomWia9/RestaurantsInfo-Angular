@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { PagedList } from '../shared/pagedList';
 import { Pagination } from '../shared/pagination';
-import { Restaurant } from './restaurants-list/restaurant.model';
+import { Restaurant } from './restaurant.model';
 import { RestaurantParams } from './restaurants-params';
 
 @Injectable({

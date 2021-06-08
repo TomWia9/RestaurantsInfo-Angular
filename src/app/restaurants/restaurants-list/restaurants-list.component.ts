@@ -4,7 +4,7 @@ import { PagedList } from 'src/app/shared/pagedList';
 import { Pagination } from 'src/app/shared/pagination';
 import { RestaurantParams } from '../restaurants-params';
 import { RestaurantsService } from '../restaurants.service';
-import { Restaurant } from './restaurant.model';
+import { Restaurant } from '../restaurant.model';
 
 @Component({
   selector: 'app-restaurants-list',

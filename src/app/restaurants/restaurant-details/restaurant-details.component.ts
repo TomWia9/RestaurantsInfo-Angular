@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Restaurant } from '../restaurants-list/restaurant.model';
+import { Restaurant } from '../restaurant.model';
 import { RestaurantsService } from '../restaurants.service';
 
 @Component({
