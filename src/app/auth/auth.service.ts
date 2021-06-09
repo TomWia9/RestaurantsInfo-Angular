@@ -31,6 +31,30 @@ export class AuthService {
       );
   }
 
+  autoLogin(): void {
+    // get user from local storage
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    if (!userData) {
+      return;
+    }
+
+    const loadedUser = new User(
+      userData.id,
+      userData.email,
+      userData.role,
+      userData._token,
+      userData._tokenExpirationDate
+    );
+
+    if (loadedUser.token) {
+      this.user.next(loadedUser);
+      const expirationDuration =
+        new Date(userData._tokenExpirationData).getTime() -
+        new Date().getTime();
+      //this.autoLogout(expirationDuration);
+    }
+  }
+
   private handleAuthentication(token: string): void {
     const decodedToken: TokenClaims = jwt_decode(token);
     console.log(decodedToken.role);
