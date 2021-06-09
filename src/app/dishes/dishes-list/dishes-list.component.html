@@ -4,38 +4,39 @@
 <app-loading-spinner *ngIf="loading"></app-loading-spinner>
 <div class="row">
   <div class="col-12">
+    <div class="d-flex justify-content-between mb-3">
+      <h3 class="me-1">Dishes</h3>
+      <app-dishes-search [restaurantId]="restaurantId"></app-dishes-search>
+    </div>
     <app-empty-list-info
       *ngIf="empty && !loading"
-      message="Sorry, no restaurants found"
+      message="Sorry, no dishes found"
     ></app-empty-list-info>
+
     <div class="d-flex flex-column" *ngIf="!error && !loading && !empty">
       <div class="list-group my-3">
         <a
-          [routerLink]="['/restaurants', restaurant.id]"
+          [routerLink]="['details', dish.id]"
+          routerLinkActive="active"
           class="list-group-item list-group-item-action text-break"
-          *ngFor="let restaurant of restaurants.items"
+          *ngFor="let dish of dishes.items"
         >
           <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">{{ restaurant.name }}</h5>
-            <small class="text-success">{{
-              restaurant.hasDelivery ? 'Delivery' : ''
-            }}</small>
+            <h5 class="mb-1">{{ dish.name }}</h5>
+            <small class="text-success">{{ dish.price | currency }}</small>
           </div>
-          <p class="mb-1">
-            {{ restaurant.address.city }}
-          </p>
-          <small>{{ restaurant.category }}</small>
         </a>
       </div>
     </div>
   </div>
 
-  <div class="row" *ngIf="!error && !loading && restaurantsParams && !empty">
+  <div class="row" *ngIf="!error && !loading && !empty">
     <div class="col-12">
       <div class="d-flex justify-content-center mb-3">
         <app-pagination
           [paginationData]="getPaginationData()"
-          [params]="restaurantsParams"
+          [params]="dishesParams"
+          [restaurantId]="restaurantId"
         ></app-pagination>
       </div>
     </div>

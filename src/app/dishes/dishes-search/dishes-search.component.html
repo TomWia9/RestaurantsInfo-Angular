@@ -1,0 +1,20 @@
+<form [formGroup]="form" (ngSubmit)="onSearch()">
+  <div class="d-flex">
+    <mdb-form-control>
+      <input
+        mdbInput
+        type="number"
+        id="maximumPrice"
+        formControlName="maximumPrice"
+        class="form-control"
+      />
+      <label mdbLabel class="form-label" for="maximumPrice">Max price</label>
+    </mdb-form-control>
+    <button class="btn btn-success mx-2" [disabled]="!form.valid" type="submit">
+      Search
+    </button>
+    <button class="btn btn-warning" type="reset" (click)="onReset()">
+      Reset
+    </button>
+  </div>
+</form>

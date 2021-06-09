@@ -10,10 +10,17 @@ import { HeaderComponent } from './header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { RestaurantsListComponent } from './restaurants/restaurants-list/restaurants-list.component';
-import { PaginationComponent } from './restaurants/restaurants-list/pagination/pagination.component';
+import { PaginationComponent } from './shared/pagination/pagination.component';
 import { AdvancedSearchComponent } from './restaurants/advanced-search/advanced-search.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { DishesComponent } from './dishes/dishes.component';
+import { RestaurantDetailsComponent } from './restaurants/restaurant-details/restaurant-details.component';
+import { DishesListComponent } from './dishes/dishes-list/dishes-list.component';
+import { EmptyListInfoComponent } from './shared/empty-list-info/empty-list-info.component';
+import { DishesSearchComponent } from './dishes/dishes-search/dishes-search.component';
+import { DishDetailsComponent } from './dishes/dish-details/dish-details.component';
+import { DishDetailsStartComponent } from './dishes/dish-details/dish-details-start/dish-details-start.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +31,14 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     PaginationComponent,
     AdvancedSearchComponent,
     LoadingSpinnerComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    DishesComponent,
+    RestaurantDetailsComponent,
+    DishesListComponent,
+    EmptyListInfoComponent,
+    DishesSearchComponent,
+    DishDetailsComponent,
+    DishDetailsStartComponent
   ],
   imports: [
     BrowserModule,

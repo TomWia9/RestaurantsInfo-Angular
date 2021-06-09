@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">RestaurantsInfo</a>
+    <a class="navbar-brand" routerLink="/">RestaurantsInfo</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -23,7 +23,8 @@
             class="nav-link"
             routerLink="/restaurants"
             routerLinkActive="active"
-            >Restaurants</a>
+            >Restaurants</a
+          >
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
@@ -38,9 +39,9 @@
         <input
           type="search"
           class="form-control"
-          placeholder="Search for restaurant"
+          [placeholder]="getSearchPlaceholder()"
           aria-label="Search"
-          formControlName="restaurantName"
+          formControlName="name"
         />
         <button
           class="btn btn-outline-primary"

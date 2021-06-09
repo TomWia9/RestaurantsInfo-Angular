@@ -8,31 +8,33 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { PagedList } from '../shared/pagedList';
 import { Pagination } from '../shared/pagination';
-import { Restaurant } from './restaurant.model';
-import { RestaurantParams } from './restaurants-params';
+import { Dish } from './dish.model';
+import { DishesParams } from './dishes-params';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RestaurantsService {
+export class DishesService {
   constructor(private http: HttpClient) {}
 
-  restaurantsChanged = new Subject<PagedList<Restaurant>>();
+  private dishes: PagedList<Dish>;
+
+  dishesChanged = new Subject<PagedList<Dish>>();
   errorCatched = new Subject<string>();
   loading = new Subject<boolean>();
-  paramsChanged = new Subject<RestaurantParams>();
+  paramsChanged = new Subject<DishesParams>();
 
-  getRestaurants(restaurantsParams: RestaurantParams): void {
+  getDishes(dishesParams: DishesParams, restaurantId: string): void {
     this.loading.next(true);
-    this.paramsChanged.next(restaurantsParams);
-    const params: HttpParams = restaurantsParams.getHttpParams();
+    this.paramsChanged.next(dishesParams);
+    const params: HttpParams = dishesParams.getHttpParams();
 
-    this.fetchRestaurants(params).subscribe(
-      (response: HttpResponse<Restaurant[]>) => {
+    this.fetchDishes(params, restaurantId).subscribe(
+      (response: HttpResponse<Dish[]>) => {
         const pagination = response.headers.get('X-Pagination');
         const paginationData: Pagination = JSON.parse(pagination);
 
-        const restaurants = new PagedList<Restaurant>(
+        this.dishes = new PagedList<Dish>(
           response.body,
           paginationData.currentPage,
           paginationData.totalPages,
@@ -41,7 +43,7 @@ export class RestaurantsService {
           paginationData.hasNext
         );
 
-        this.restaurantsChanged.next(restaurants);
+        this.dishesChanged.next(this.dishes);
         this.loading.next(false);
       },
       (error) => {
@@ -50,6 +52,8 @@ export class RestaurantsService {
           'An error occurred while loading the restaurants'
         );
         if (error.status === 401) {
+          console.log('401');
+
           //TODO redirect to /auth/login
         }
         this.loading.next(false);
@@ -57,9 +61,12 @@ export class RestaurantsService {
     );
   }
 
-  fetchRestaurants(params: HttpParams): Observable<HttpResponse<Restaurant[]>> {
-    return this.http.get<Restaurant[]>(
-      'https://localhost:5001/api/Restaurants',
+  fetchDishes(
+    params: HttpParams,
+    restaurantId: string
+  ): Observable<HttpResponse<Dish[]>> {
+    return this.http.get<Dish[]>(
+      `https://localhost:5001/api/Restaurants/${restaurantId}/dishes`,
       {
         observe: 'response',
         //temp token
@@ -72,9 +79,9 @@ export class RestaurantsService {
     );
   }
 
-  getRestaurantById(id: string): Observable<Restaurant> {
-    return this.http.get<Restaurant>(
-      `https://localhost:5001/api/Restaurants/${id}`,
+  getDishById(restaurantId: string, id: string): Observable<Dish> {
+    return this.http.get<Dish>(
+      `https://localhost:5001/api/Restaurants/${restaurantId}/dishes/${id}`,
       {
         headers: new HttpHeaders({
           Authorization:

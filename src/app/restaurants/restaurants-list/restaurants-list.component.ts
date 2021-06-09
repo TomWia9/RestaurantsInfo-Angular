@@ -4,7 +4,7 @@ import { PagedList } from 'src/app/shared/pagedList';
 import { Pagination } from 'src/app/shared/pagination';
 import { RestaurantParams } from '../restaurants-params';
 import { RestaurantsService } from '../restaurants.service';
-import { Restaurant } from './restaurant.model';
+import { Restaurant } from '../restaurant.model';
 
 @Component({
   selector: 'app-restaurants-list',
@@ -15,6 +15,7 @@ export class RestaurantsListComponent implements OnInit, OnDestroy {
   restaurants: PagedList<Restaurant>;
   error = '';
   loading = false;
+  empty = true;
   restaurantsParams: RestaurantParams;
   restaurantsSubscription: Subscription;
   errorSubscription: Subscription;
@@ -42,6 +43,7 @@ export class RestaurantsListComponent implements OnInit, OnDestroy {
 
     this.restaurantsSubscription =
       this.restaurantsService.restaurantsChanged.subscribe((restaurants) => {
+        this.empty = restaurants.totalCount === 0;
         this.restaurants = restaurants;
       });
 
