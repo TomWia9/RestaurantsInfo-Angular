@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth/auth-guard.service';
 import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
@@ -11,10 +12,15 @@ import { RestaurantsComponent } from './restaurants/restaurants.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/restaurants', pathMatch: 'full' },
-  { path: 'restaurants', component: RestaurantsComponent },
+  {
+    path: 'restaurants',
+    component: RestaurantsComponent,
+    canActivate: [AuthGuard]
+  },
   {
     path: 'restaurants/:id',
     component: DishesComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'details', pathMatch: 'full' },
       { path: 'details', component: DishDetailsStartComponent },

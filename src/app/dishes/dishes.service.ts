@@ -48,7 +48,7 @@ export class DishesService {
           'An error occurred while loading the restaurants'
         );
         if (error.status === 401) {
-          this.router.navigate(['/auth/login']);
+          // this.router.navigate(['/auth/login']);
         }
         this.loading.next(false);
       }
