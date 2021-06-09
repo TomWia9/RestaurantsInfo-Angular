@@ -21,8 +21,8 @@ import { EmptyListInfoComponent } from './shared/empty-list-info/empty-list-info
 import { DishesSearchComponent } from './dishes/dishes-search/dishes-search.component';
 import { DishDetailsComponent } from './dishes/dish-details/dish-details.component';
 import { DishDetailsStartComponent } from './dishes/dish-details/dish-details-start/dish-details-start.component';
-import { AuthComponent } from './auth/auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
