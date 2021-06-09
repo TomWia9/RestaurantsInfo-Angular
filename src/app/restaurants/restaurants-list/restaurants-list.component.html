@@ -5,7 +5,7 @@
 <div class="row">
   <div class="col-12">
     <app-empty-list-info
-      *ngIf="empty"
+      *ngIf="empty && !loading"
       message="Sorry, no restaurants found"
     ></app-empty-list-info>
     <div class="d-flex flex-column" *ngIf="!error && !loading && !empty">
