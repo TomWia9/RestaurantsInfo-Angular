@@ -16,6 +16,32 @@ export class AuthService {
 
   user = new BehaviorSubject<User>(null);
 
+  register(
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string,
+    confirmPassword: string
+  ): Observable<AuthResponse> {
+    return this.http
+      .post<AuthResponse>('https://localhost:5001/api/auth/signup', {
+        firstName,
+        lastName,
+        email,
+        password,
+        confirmPassword
+      })
+      .pipe(
+        tap((resData) => {
+          console.log(resData);
+
+          if (resData.token) {
+            this.handleAuthentication(resData.token);
+          }
+        })
+      );
+  }
+
   login(email: string, password: string): Observable<AuthResponse> {
     return this.http
       .post<AuthResponse>('https://localhost:5001/api/auth/signin', {

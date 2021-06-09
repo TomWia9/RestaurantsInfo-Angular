@@ -23,6 +23,7 @@ import { DishDetailsComponent } from './dishes/dish-details/dish-details.compone
 import { DishDetailsStartComponent } from './dishes/dish-details/dish-details-start/dish-details-start.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthComponent } from './auth/auth.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { AuthComponent } from './auth/auth.component';
     DishDetailsComponent,
     DishDetailsStartComponent,
     AuthComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
