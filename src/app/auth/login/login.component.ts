@@ -16,9 +16,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      email: new FormControl('', [Validators.email, Validators.required]),
+      email: new FormControl('', [
+        Validators.email,
+        Validators.required,
+        Validators.maxLength(256)
+      ]),
       password: new FormControl('', [
         Validators.minLength(8),
+        Validators.maxLength(64),
         Validators.required
       ])
     });

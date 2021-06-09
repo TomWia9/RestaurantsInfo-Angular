@@ -17,6 +17,9 @@
       <mdb-error *ngIf="form.get('email').hasError('email')"
         >E-mail is invalid!</mdb-error
       >
+      <mdb-error *ngIf="form.get('email').hasError('maxlength')"
+        >Email must have maximum 256 characters!</mdb-error
+      >
     </span>
   </mdb-form-control>
   <mdb-form-control class="my-5">
@@ -35,6 +38,9 @@
       >
       <mdb-error *ngIf="form.get('password').hasError('minlength')"
         >Password must have minimum 8 characters!</mdb-error
+      >
+      <mdb-error *ngIf="form.get('password').hasError('maxlength')"
+        >Password must have maximum 64 characters!</mdb-error
       >
     </span>
   </mdb-form-control>
