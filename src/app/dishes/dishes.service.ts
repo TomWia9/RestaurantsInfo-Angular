@@ -1,6 +1,5 @@
 import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { PagedList } from '../shared/pagedList';
 import { Pagination } from '../shared/pagination';
@@ -11,7 +10,7 @@ import { DishesParams } from './dishes-params';
   providedIn: 'root'
 })
 export class DishesService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient) {}
 
   private dishes: PagedList<Dish>;
 
@@ -42,14 +41,10 @@ export class DishesService {
         this.dishesChanged.next(this.dishes);
         this.loading.next(false);
       },
-      (error) => {
-        console.log(error);
+      () => {
         this.errorCatched.next(
           'An error occurred while loading the restaurants'
         );
-        if (error.status === 401) {
-          // this.router.navigate(['/auth/login']);
-        }
         this.loading.next(false);
       }
     );
