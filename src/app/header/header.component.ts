@@ -28,7 +28,10 @@ export class HeaderComponent implements OnInit {
         }
         if (event.url.includes('restaurants/')) {
           this.searchData = 'details';
-          this.restaurantId = this.router.url.split('/').pop();
+          const urlFragments = this.router.url.split('/');
+          if (urlFragments[urlFragments.length - 2]) {
+            this.restaurantId = urlFragments[urlFragments.length - 2];
+          }
         }
       }
     });
