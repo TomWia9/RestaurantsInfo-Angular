@@ -16,7 +16,8 @@
     <div class="d-flex flex-column" *ngIf="!error && !loading && !empty">
       <div class="list-group my-3">
         <a
-          [routerLink]="['/restaurants', restaurantId, '/dishes', dish.id]"
+          [routerLink]="['details', dish.id]"
+          routerLinkActive="active"
           class="list-group-item list-group-item-action text-break"
           *ngFor="let dish of dishes.items"
         >
