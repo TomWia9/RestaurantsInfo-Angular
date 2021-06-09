@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { PagedList } from '../shared/pagedList';
 import { Pagination } from '../shared/pagination';
@@ -10,7 +11,7 @@ import { RestaurantParams } from './restaurants-params';
   providedIn: 'root'
 })
 export class RestaurantsService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   restaurantsChanged = new Subject<PagedList<Restaurant>>();
   errorCatched = new Subject<string>();
@@ -45,7 +46,7 @@ export class RestaurantsService {
           'An error occurred while loading the restaurants'
         );
         if (error.status === 401) {
-          //TODO redirect to /auth/login
+          this.router.navigate(['/auth/login']);
         }
         this.loading.next(false);
       }
