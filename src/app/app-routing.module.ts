@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DishDetailsStartComponent } from './dishes/dish-details-start/dish-details-start.component';
+import { DishDetailsStartComponent } from './dishes/dish-details/dish-details-start/dish-details-start.component';
 import { DishDetailsComponent } from './dishes/dish-details/dish-details.component';
 import { DishesComponent } from './dishes/dishes.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
