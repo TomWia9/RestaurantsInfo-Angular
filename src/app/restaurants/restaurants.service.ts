@@ -1,9 +1,4 @@
-import {
-  HttpClient,
-  HttpHeaders,
-  HttpParams,
-  HttpResponse
-} from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { PagedList } from '../shared/pagedList';
@@ -44,14 +39,11 @@ export class RestaurantsService {
         this.restaurantsChanged.next(restaurants);
         this.loading.next(false);
       },
-      (error) => {
-        console.log(error);
+      () => {
         this.errorCatched.next(
           'An error occurred while loading the restaurants'
         );
-        if (error.status === 401) {
-          //TODO redirect to /auth/login
-        }
+
         this.loading.next(false);
       }
     );
@@ -62,11 +54,6 @@ export class RestaurantsService {
       'https://localhost:5001/api/Restaurants',
       {
         observe: 'response',
-        //temp token
-        headers: new HttpHeaders({
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyMTg2NzQ5Yi1lOGQxLTQ5OTUtOTE2NC0wOGQ5MjVhYTExYjYiLCJ1bmlxdWVfbmFtZSI6InRvbWFzendpYXRyb3dza2k5QGdtYWlsLmNvbSIsImp0aSI6IjlhNzM1YWY2LTI0YjktNGFlMi05ODUwLWViOTYxZDk0MGMyMCIsIm5hbWVpZCI6IjIxODY3NDliLWU4ZDEtNDk5NS05MTY0LTA4ZDkyNWFhMTFiNiIsInJvbGUiOiJVc2VyIiwibmJmIjoxNjIyNjI2NjYzLCJleHAiOjE2MjUyMTg2NjMsImlhdCI6MTYyMjYyNjY2MywiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTAwMSJ9.hltykO2zoh_P_lhwFaw0uOz-I_rBNRhSt8kKceJqTXI'
-        }),
         params: params
       }
     );
@@ -74,13 +61,7 @@ export class RestaurantsService {
 
   getRestaurantById(id: string): Observable<Restaurant> {
     return this.http.get<Restaurant>(
-      `https://localhost:5001/api/Restaurants/${id}`,
-      {
-        headers: new HttpHeaders({
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyMTg2NzQ5Yi1lOGQxLTQ5OTUtOTE2NC0wOGQ5MjVhYTExYjYiLCJ1bmlxdWVfbmFtZSI6InRvbWFzendpYXRyb3dza2k5QGdtYWlsLmNvbSIsImp0aSI6IjlhNzM1YWY2LTI0YjktNGFlMi05ODUwLWViOTYxZDk0MGMyMCIsIm5hbWVpZCI6IjIxODY3NDliLWU4ZDEtNDk5NS05MTY0LTA4ZDkyNWFhMTFiNiIsInJvbGUiOiJVc2VyIiwibmJmIjoxNjIyNjI2NjYzLCJleHAiOjE2MjUyMTg2NjMsImlhdCI6MTYyMjYyNjY2MywiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTAwMSJ9.hltykO2zoh_P_lhwFaw0uOz-I_rBNRhSt8kKceJqTXI'
-        })
-      }
+      `https://localhost:5001/api/Restaurants/${id}`
     );
   }
 }

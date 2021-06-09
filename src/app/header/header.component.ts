@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
+import { User } from '../auth/user.model';
 import { DishesParams } from '../dishes/dishes-params';
 import { DishesService } from '../dishes/dishes.service';
 import { RestaurantParams } from '../restaurants/restaurants-params';
@@ -11,14 +14,17 @@ import { RestaurantsService } from '../restaurants/restaurants.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   searchForm: FormGroup;
   searchData = 'restaurants';
   restaurantId = '';
+  user: User;
+  userSubscription: Subscription;
 
   constructor(
     private restaurantsService: RestaurantsService,
     private dishesService: DishesService,
+    private authService: AuthService,
     private router: Router
   ) {
     this.router.events.subscribe((event) => {
@@ -40,6 +46,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.searchForm = new FormGroup({
       name: new FormControl('', Validators.required)
+    });
+
+    this.userSubscription = this.authService.user.subscribe((user: User) => {
+      this.user = user;
     });
   }
 
@@ -78,5 +88,13 @@ export class HeaderComponent implements OnInit {
     return this.searchData === 'restaurants'
       ? 'Search for restaurant'
       : 'Search for dishes';
+  }
+
+  onLogout(): void {
+    this.authService.logout();
+  }
+
+  ngOnDestroy(): void {
+    this.userSubscription.unsubscribe();
   }
 }

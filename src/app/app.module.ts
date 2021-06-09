@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +21,10 @@ import { EmptyListInfoComponent } from './shared/empty-list-info/empty-list-info
 import { DishesSearchComponent } from './dishes/dishes-search/dishes-search.component';
 import { DishDetailsComponent } from './dishes/dish-details/dish-details.component';
 import { DishDetailsStartComponent } from './dishes/dish-details/dish-details-start/dish-details-start.component';
+import { LoginComponent } from './auth/login/login.component';
+import { AuthComponent } from './auth/auth.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { AuthInterceptorService } from './auth/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,10 @@ import { DishDetailsStartComponent } from './dishes/dish-details/dish-details-st
     EmptyListInfoComponent,
     DishesSearchComponent,
     DishDetailsComponent,
-    DishDetailsStartComponent
+    DishDetailsStartComponent,
+    AuthComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +55,13 @@ import { DishDetailsStartComponent } from './dishes/dish-details/dish-details-st
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
