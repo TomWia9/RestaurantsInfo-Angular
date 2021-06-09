@@ -5,6 +5,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthResponse } from './authResponse';
 import { User } from './user.model';
 import { tap } from 'rxjs/operators';
+import jwt_decode from 'jwt-decode';
+import { TokenClaims } from './login/tokenClaims';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +32,21 @@ export class AuthService {
   }
 
   private handleAuthentication(token: string): void {
-    console.log(token);
+    const decodedToken: TokenClaims = jwt_decode(token);
+    console.log(decodedToken.role);
+    console.log(decodedToken.unique_name);
+    console.log(decodedToken.exp);
+    console.log(decodedToken.nameid);
+    const expirationDate = new Date(+decodedToken.exp * 1000);
+    const user = new User(
+      decodedToken.nameid,
+      decodedToken.unique_name,
+      decodedToken.role,
+      token,
+      expirationDate
+    );
+    this.user.next(user);
+    // this.autoLogin(+decodedToken.exp*1000);
+    localStorage.setItem('userData', JSON.stringify(user));
   }
 }
