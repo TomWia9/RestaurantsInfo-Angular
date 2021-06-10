@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MdbModalRef } from 'mdb-angular-ui-kit';
+import { Restaurant } from '../restaurant.model';
+import { RestaurantParams } from '../restaurants-params';
+import { RestaurantsService } from '../restaurants.service';
 
 @Component({
   selector: 'app-new-restaurant-modal',
@@ -12,18 +15,32 @@ export class NewRestaurantModalComponent implements OnInit {
   success = false;
   error = '';
 
-  constructor(public modalRef: MdbModalRef<NewRestaurantModalComponent>) {}
+  constructor(
+    public modalRef: MdbModalRef<NewRestaurantModalComponent>,
+    private restaurantsService: RestaurantsService
+  ) {}
 
   ngOnInit(): void {
     this.createForm();
   }
 
   onSubmit(): void {
-    console.log(this.form.value);
-  }
+    console.log(this.form.value as Restaurant);
 
-  info(): void {
-    console.log(this.form);
+    this.restaurantsService
+      .addRestaurant(this.form.value as Restaurant)
+      .subscribe(
+        () => {
+          this.success = true;
+          this.error = '';
+          this.form.reset();
+          this.restaurantsService.getRestaurants(new RestaurantParams(4, 1));
+        },
+        () => {
+          this.error = 'Something went wrong';
+          this.success = false;
+        }
+      );
   }
 
   private createForm(): void {
