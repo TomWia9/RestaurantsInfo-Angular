@@ -25,6 +25,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { AuthComponent } from './auth/auth.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { NewRestaurantModalComponent } from './restaurants/new-restaurant-modal/new-restaurant-modal.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
     DishDetailsStartComponent,
     AuthComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    NewRestaurantModalComponent
   ],
   imports: [
     BrowserModule,
