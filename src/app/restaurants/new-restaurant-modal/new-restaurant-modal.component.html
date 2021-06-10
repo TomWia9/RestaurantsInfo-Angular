@@ -137,8 +137,14 @@
             >
           </mdb-form-control>
         </div>
-        <div class="alert alert-danger" role="alert" *ngIf="error">
-          {{ error }}
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="
+            (!form.valid && form.get('address.postalCode').touched) || error
+          "
+        >
+          {{ error ? error : 'Form contains errors!' }}
         </div>
         <div class="alert alert-success" role="alert" *ngIf="success">
           Successfully added!
@@ -152,6 +158,9 @@
     </button>
     <button type="button" class="btn btn-secondary" (click)="modalRef.close()">
       Cancel
+    </button>
+    <button type="button" class="btn btn-info" (click)="info()">
+      Log info
     </button>
   </div>
 </form>

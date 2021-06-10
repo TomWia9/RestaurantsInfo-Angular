@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MdbModalRef } from 'mdb-angular-ui-kit';
 
 @Component({
@@ -22,19 +22,59 @@ export class NewRestaurantModalComponent implements OnInit {
     console.log(this.form.value);
   }
 
+  info(): void {
+    console.log(this.form);
+  }
+
   private createForm(): void {
     this.form = new FormGroup({
-      name: new FormControl(''),
-      description: new FormControl(''),
-      category: new FormControl(''),
+      name: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(30)
+      ]),
+      description: new FormControl('', [
+        Validators.minLength(2),
+        Validators.maxLength(500)
+      ]),
+      category: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(30)
+      ]),
       hasDelivery: new FormControl(false),
-      contactNumber: new FormControl(''),
-      contactEmail: new FormControl(''),
+      contactNumber: new FormControl('', [
+        Validators.required,
+        Validators.minLength(7),
+        Validators.maxLength(16)
+      ]),
+      contactEmail: new FormControl('', [
+        Validators.required,
+        Validators.email,
+        Validators.minLength(4),
+        Validators.maxLength(40)
+      ]),
       address: new FormGroup({
-        city: new FormControl(''),
-        street: new FormControl(''),
-        houseNumber: new FormControl(''),
-        postalCode: new FormControl('')
+        city: new FormControl('', [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(30)
+        ]),
+        street: new FormControl('', [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(50)
+        ]),
+        houseNumber: new FormControl('', [
+          Validators.required,
+          Validators.minLength(1),
+          Validators.maxLength(5)
+        ]),
+        postalCode: new FormControl('', [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(7)
+        ])
       })
     });
   }
