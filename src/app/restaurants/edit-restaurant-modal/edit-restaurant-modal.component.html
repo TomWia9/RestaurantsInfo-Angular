@@ -1,5 +1,7 @@
 <div class="modal-header">
-  <h5 class="modal-title" id="newRestaurant">New restaurant</h5>
+  <h5 class="modal-title" id="newRestaurant">
+    {{ updateMode ? 'Edit restaurant' : 'New Restaurant' }}
+  </h5>
   <button
     type="button"
     class="btn-close"
@@ -7,7 +9,7 @@
     (click)="modalRef.close()"
   ></button>
 </div>
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="form">
   <div class="modal-body">
     <div class="row">
       <div class="col-4 offset-1">
@@ -147,14 +149,14 @@
           {{ error ? error : 'Form contains errors!' }}
         </div>
         <div class="alert alert-success" role="alert" *ngIf="success">
-          Successfully added!
+          Operation successfull!
         </div>
       </div>
     </div>
   </div>
   <div class="modal-footer">
     <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
-      Add new restaurant
+      {{ updateMode ? 'Edit restaurant' : 'Add new restaurant' }}
     </button>
     <button type="button" class="btn btn-secondary" (click)="modalRef.close()">
       Close

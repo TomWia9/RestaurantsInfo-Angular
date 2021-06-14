@@ -6,7 +6,15 @@
     >
     <button
       type="button"
-      class="btn btn-danger my-3 ms-1"
+      class="btn btn-secondary my-3 mx-1"
+      *ngIf="admin"
+      (click)="onUpdateRestaurant()"
+    >
+      Edit restaurant
+    </button>
+    <button
+      type="button"
+      class="btn btn-danger my-3"
       *ngIf="admin"
       (click)="onDeleteRestaurant()"
     >

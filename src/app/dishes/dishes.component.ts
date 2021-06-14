@@ -5,6 +5,7 @@ import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { User } from '../auth/user.model';
+import { EditRestaurantModalComponent } from '../restaurants/edit-restaurant-modal/edit-restaurant-modal.component';
 import { DeleteRestaurantModalComponent } from './delete-restaurant-modal/delete-restaurant-modal.component';
 
 @Component({
@@ -40,6 +41,13 @@ export class DishesComponent implements OnInit, OnDestroy {
   onDeleteRestaurant(): void {
     this.modalRef = this.modalService.open(DeleteRestaurantModalComponent, {
       data: { id: this.restaurantId }
+    });
+  }
+
+  onUpdateRestaurant(): void {
+    this.modalRef = this.modalService.open(EditRestaurantModalComponent, {
+      modalClass: 'modal-lg',
+      data: { updateMode: true, id: this.restaurantId }
     });
   }
 }

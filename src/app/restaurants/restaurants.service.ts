@@ -79,4 +79,11 @@ export class RestaurantsService {
       `https://localhost:5001/api/Restaurants/${id}`
     );
   }
+
+  updateRestaurant(id: string, restaurant: Restaurant): Observable<unknown> {
+    return this.http.put<unknown>(
+      `https://localhost:5001/api/Restaurants/${id}`,
+      restaurant
+    );
+  }
 }

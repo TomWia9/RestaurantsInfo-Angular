@@ -3,7 +3,7 @@ import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { User } from '../auth/user.model';
-import { NewRestaurantModalComponent } from './new-restaurant-modal/new-restaurant-modal.component';
+import { EditRestaurantModalComponent } from './edit-restaurant-modal/edit-restaurant-modal.component';
 
 @Component({
   selector: 'app-restaurants',
@@ -13,7 +13,7 @@ import { NewRestaurantModalComponent } from './new-restaurant-modal/new-restaura
 export class RestaurantsComponent implements OnInit, OnDestroy {
   admin = false;
   userSubscription: Subscription;
-  modalRef: MdbModalRef<NewRestaurantModalComponent>;
+  modalRef: MdbModalRef<EditRestaurantModalComponent>;
 
   constructor(
     private authService: AuthService,
@@ -33,7 +33,7 @@ export class RestaurantsComponent implements OnInit, OnDestroy {
   }
 
   onNewRestaurant(): void {
-    this.modalRef = this.modalService.open(NewRestaurantModalComponent, {
+    this.modalRef = this.modalService.open(EditRestaurantModalComponent, {
       modalClass: 'modal-lg'
     });
   }
