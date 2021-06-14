@@ -4,6 +4,14 @@
     <a type="button" class="btn btn-info my-3" routerLink=""
       >Back to restaurants list</a
     >
+    <button
+      type="button"
+      class="btn btn-danger my-3 ms-1"
+      *ngIf="admin"
+      (click)="onDeleteRestaurant()"
+    >
+      Delete restaurant
+    </button>
   </div>
   <div class="col-12 col-md-6 offset-md-2 mb-3">
     <div class="row mb-3">

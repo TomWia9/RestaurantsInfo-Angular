@@ -26,6 +26,7 @@ import { AuthComponent } from './auth/auth.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { NewRestaurantModalComponent } from './restaurants/new-restaurant-modal/new-restaurant-modal.component';
+import { DeleteRestaurantModalComponent } from './dishes/delete-restaurant-modal/delete-restaurant-modal.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { NewRestaurantModalComponent } from './restaurants/new-restaurant-modal/
     AuthComponent,
     LoginComponent,
     RegisterComponent,
-    NewRestaurantModalComponent
+    NewRestaurantModalComponent,
+    DeleteRestaurantModalComponent
   ],
   imports: [
     BrowserModule,

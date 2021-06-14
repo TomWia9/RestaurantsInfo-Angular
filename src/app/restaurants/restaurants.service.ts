@@ -73,4 +73,10 @@ export class RestaurantsService {
       `https://localhost:5001/api/Restaurants/${id}`
     );
   }
+
+  deleteRestaurant(id: string): Observable<unknown> {
+    return this.http.delete<unknown>(
+      `https://localhost:5001/api/Restaurants/${id}`
+    );
+  }
 }
