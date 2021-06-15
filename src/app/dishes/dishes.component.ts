@@ -18,7 +18,9 @@ export class DishesComponent implements OnInit, OnDestroy {
   restaurantId = '';
   admin = false;
   userSubscription: Subscription;
-  modalRef: MdbModalRef<DeleteRestaurantModalComponent>;
+  deleteRestaurantModalRef: MdbModalRef<DeleteRestaurantModalComponent>;
+  updateRestaurantModalRef: MdbModalRef<EditRestaurantModalComponent>;
+  addDishModalRef: MdbModalRef<EditDishModalComponent>;
 
   constructor(
     private authService: AuthService,
@@ -40,20 +42,26 @@ export class DishesComponent implements OnInit, OnDestroy {
   }
 
   onDeleteRestaurant(): void {
-    this.modalRef = this.modalService.open(DeleteRestaurantModalComponent, {
-      data: { id: this.restaurantId }
-    });
+    this.deleteRestaurantModalRef = this.modalService.open(
+      DeleteRestaurantModalComponent,
+      {
+        data: { id: this.restaurantId }
+      }
+    );
   }
 
   onUpdateRestaurant(): void {
-    this.modalRef = this.modalService.open(EditRestaurantModalComponent, {
-      modalClass: 'modal-lg',
-      data: { updateMode: true, id: this.restaurantId }
-    });
+    this.updateRestaurantModalRef = this.modalService.open(
+      EditRestaurantModalComponent,
+      {
+        modalClass: 'modal-lg',
+        data: { updateMode: true, id: this.restaurantId }
+      }
+    );
   }
 
   onAddDish(): void {
-    this.modalRef = this.modalService.open(EditDishModalComponent, {
+    this.addDishModalRef = this.modalService.open(EditDishModalComponent, {
       data: { updateMode: false, restaurantId: this.restaurantId }
     });
   }
