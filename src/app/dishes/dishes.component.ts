@@ -7,6 +7,7 @@ import { AuthService } from '../auth/auth.service';
 import { User } from '../auth/user.model';
 import { EditRestaurantModalComponent } from '../restaurants/edit-restaurant-modal/edit-restaurant-modal.component';
 import { DeleteRestaurantModalComponent } from './delete-restaurant-modal/delete-restaurant-modal.component';
+import { EditDishModalComponent } from './edit-dish-modal/edit-dish-modal.component';
 
 @Component({
   selector: 'app-dishes',
@@ -48,6 +49,12 @@ export class DishesComponent implements OnInit, OnDestroy {
     this.modalRef = this.modalService.open(EditRestaurantModalComponent, {
       modalClass: 'modal-lg',
       data: { updateMode: true, id: this.restaurantId }
+    });
+  }
+
+  onAddDish(): void {
+    this.modalRef = this.modalService.open(EditDishModalComponent, {
+      data: { updateMode: false, restaurantId: this.restaurantId }
     });
   }
 }

@@ -25,6 +25,14 @@
     <div class="row mb-3">
       <div class="col-12">
         <app-dishes-list></app-dishes-list>
+        <button
+          type="button"
+          class="btn btn-secondary my-3"
+          *ngIf="admin"
+          (click)="onAddDish()"
+        >
+          Add new dish
+        </button>
       </div>
     </div>
     <div class="row">

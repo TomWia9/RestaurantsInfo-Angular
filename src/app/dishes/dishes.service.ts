@@ -68,4 +68,22 @@ export class DishesService {
       `https://localhost:5001/api/Restaurants/${restaurantId}/dishes/${id}`
     );
   }
+
+  addDish(restaurantId: string, dish: Dish): Observable<Dish> {
+    return this.http.post<Dish>(
+      `https://localhost:5001/api/Restaurants/${restaurantId}/dishes`,
+      dish
+    );
+  }
+
+  updateDish(
+    restaurantId: string,
+    dishId: string,
+    dish: Dish
+  ): Observable<Dish> {
+    return this.http.put<Dish>(
+      `https://localhost:5001/api/Restaurants/${restaurantId}/dishes/${dishId}`,
+      dish
+    );
+  }
 }
