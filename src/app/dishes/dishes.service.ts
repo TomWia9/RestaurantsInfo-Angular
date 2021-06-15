@@ -80,10 +80,16 @@ export class DishesService {
     restaurantId: string,
     dishId: string,
     dish: Dish
-  ): Observable<Dish> {
-    return this.http.put<Dish>(
+  ): Observable<unknown> {
+    return this.http.put<unknown>(
       `https://localhost:5001/api/Restaurants/${restaurantId}/dishes/${dishId}`,
       dish
+    );
+  }
+
+  deleteDish(restaurantId: string, dishId: string): Observable<unknown> {
+    return this.http.delete<unknown>(
+      `https://localhost:5001/api/Restaurants/${restaurantId}/dishes/${dishId}`
     );
   }
 }

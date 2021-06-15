@@ -4,6 +4,7 @@ import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/auth/user.model';
+import { DeleteDishModalComponent } from '../delete-dish-modal/delete-dish-modal.component';
 import { Dish } from '../dish.model';
 import { DishesService } from '../dishes.service';
 import { EditDishModalComponent } from '../edit-dish-modal/edit-dish-modal.component';
@@ -18,7 +19,8 @@ export class DishDetailsComponent implements OnInit, OnDestroy {
   dish: Dish;
   dishSubscription: Subscription;
   userSubscription: Subscription;
-  modalRef: MdbModalRef<EditDishModalComponent>;
+  editDishModalRef: MdbModalRef<EditDishModalComponent>;
+  deleteDishModalRef: MdbModalRef<EditDishModalComponent>;
   admin = false;
 
   constructor(
@@ -47,9 +49,18 @@ export class DishDetailsComponent implements OnInit, OnDestroy {
   }
 
   onUpdateDish(): void {
-    this.modalRef = this.modalService.open(EditDishModalComponent, {
+    this.editDishModalRef = this.modalService.open(EditDishModalComponent, {
       data: {
         updateMode: true,
+        restaurantId: this.restaurantId,
+        dishId: this.dish.id
+      }
+    });
+  }
+
+  onDeleteDish(): void {
+    this.deleteDishModalRef = this.modalService.open(DeleteDishModalComponent, {
+      data: {
         restaurantId: this.restaurantId,
         dishId: this.dish.id
       }

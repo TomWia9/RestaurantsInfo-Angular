@@ -29,8 +29,6 @@ export class DeleteRestaurantModalComponent implements OnDestroy {
           this.router.navigate(['']);
         },
         (error) => {
-          console.log(error);
-
           this.error = error;
         }
       );

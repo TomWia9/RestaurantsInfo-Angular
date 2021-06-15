@@ -28,6 +28,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { EditRestaurantModalComponent } from './restaurants/edit-restaurant-modal/edit-restaurant-modal.component';
 import { DeleteRestaurantModalComponent } from './dishes/delete-restaurant-modal/delete-restaurant-modal.component';
 import { EditDishModalComponent } from './dishes/edit-dish-modal/edit-dish-modal.component';
+import { DeleteDishModalComponent } from './dishes/delete-dish-modal/delete-dish-modal.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { EditDishModalComponent } from './dishes/edit-dish-modal/edit-dish-modal
     RegisterComponent,
     EditRestaurantModalComponent,
     DeleteRestaurantModalComponent,
-    EditDishModalComponent
+    EditDishModalComponent,
+    DeleteDishModalComponent
   ],
   imports: [
     BrowserModule,
