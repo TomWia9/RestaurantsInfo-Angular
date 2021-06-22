@@ -49,7 +49,9 @@ export class RestaurantsService {
     );
   }
 
-  fetchRestaurants(params: HttpParams): Observable<HttpResponse<Restaurant[]>> {
+  private fetchRestaurants(
+    params: HttpParams
+  ): Observable<HttpResponse<Restaurant[]>> {
     return this.http.get<Restaurant[]>(
       'https://localhost:5001/api/Restaurants',
       {
@@ -59,9 +61,29 @@ export class RestaurantsService {
     );
   }
 
+  addRestaurant(restaurant: Restaurant): Observable<Restaurant> {
+    return this.http.post<Restaurant>(
+      'https://localhost:5001/api/Restaurants',
+      restaurant
+    );
+  }
+
   getRestaurantById(id: string): Observable<Restaurant> {
     return this.http.get<Restaurant>(
       `https://localhost:5001/api/Restaurants/${id}`
+    );
+  }
+
+  deleteRestaurant(id: string): Observable<unknown> {
+    return this.http.delete<unknown>(
+      `https://localhost:5001/api/Restaurants/${id}`
+    );
+  }
+
+  updateRestaurant(id: string, restaurant: Restaurant): Observable<unknown> {
+    return this.http.put<unknown>(
+      `https://localhost:5001/api/Restaurants/${id}`,
+      restaurant
     );
   }
 }

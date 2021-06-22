@@ -21,3 +21,19 @@
     </div>
   </div>
 </div>
+<button
+  type="button"
+  class="btn btn-warning my-3"
+  *ngIf="admin"
+  (click)="onUpdateDish()"
+>
+  Edit dish
+</button>
+<button
+  type="button"
+  class="btn btn-danger my-3 ms-1"
+  *ngIf="admin"
+  (click)="onDeleteDish()"
+>
+  Delete dish
+</button>

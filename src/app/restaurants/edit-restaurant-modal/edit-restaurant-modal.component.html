@@ -1,0 +1,165 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="newRestaurant">
+    {{ updateMode ? 'Edit restaurant' : 'New Restaurant' }}
+  </h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="modalRef.close()"
+  ></button>
+</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="form">
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-4 offset-1">
+        <h4 class="text-center">Informations</h4>
+        <mdb-form-control>
+          <input
+            [mdbValidate]="true"
+            mdbInput
+            type="text"
+            id="name"
+            class="form-control"
+            formControlName="name"
+          />
+          <label mdbLabel class="form-label" for="name">Restaurant name</label>
+        </mdb-form-control>
+        <mdb-form-control>
+          <input
+            [mdbValidate]="true"
+            mdbInput
+            type="text"
+            id="description"
+            class="form-control"
+            formControlName="description"
+          />
+          <label mdbLabel class="form-label" for="description"
+            >Description</label
+          >
+        </mdb-form-control>
+        <mdb-form-control>
+          <input
+            [mdbValidate]="true"
+            mdbInput
+            type="text"
+            id="category"
+            class="form-control"
+            formControlName="category"
+          />
+          <label mdbLabel class="form-label" for="category">Category</label>
+        </mdb-form-control>
+        <mdb-form-control>
+          <input
+            [mdbValidate]="true"
+            mdbInput
+            type="text"
+            id="contactNumber"
+            class="form-control"
+            formControlName="contactNumber"
+          />
+          <label mdbLabel class="form-label" for="contactNumber"
+            >Contact number</label
+          >
+        </mdb-form-control>
+        <mdb-form-control>
+          <input
+            [mdbValidate]="true"
+            mdbInput
+            type="email"
+            id="contactEmail"
+            class="form-control"
+            formControlName="contactEmail"
+          />
+          <label mdbLabel class="form-label" for="contactEmail"
+            >Contact email</label
+          >
+        </mdb-form-control>
+        <div class="form-check ms-2">
+          <input
+            mdbCheckbox
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="hasDelivery"
+            formControlName="hasDelivery"
+          />
+          <label class="form-check-label" for="hasDelivery"> Delivery </label>
+        </div>
+      </div>
+      <div class="col-4 offset-2">
+        <h4 class="text-center">Address</h4>
+        <div formGroupName="address">
+          <mdb-form-control>
+            <input
+              [mdbValidate]="true"
+              mdbInput
+              type="text"
+              id="city"
+              class="form-control"
+              formControlName="city"
+            />
+            <label mdbLabel class="form-label" for="city">City</label>
+          </mdb-form-control>
+          <mdb-form-control>
+            <input
+              [mdbValidate]="true"
+              mdbInput
+              type="text"
+              id="street"
+              class="form-control"
+              formControlName="street"
+            />
+            <label mdbLabel class="form-label" for="street">Street</label>
+          </mdb-form-control>
+          <mdb-form-control>
+            <input
+              [mdbValidate]="true"
+              mdbInput
+              type="text"
+              id="houseNumber"
+              class="form-control"
+              formControlName="houseNumber"
+            />
+            <label mdbLabel class="form-label" for="houseNumber"
+              >House number</label
+            >
+          </mdb-form-control>
+          <mdb-form-control>
+            <input
+              [mdbValidate]="true"
+              mdbInput
+              type="text"
+              id="postalCode"
+              class="form-control"
+              formControlName="postalCode"
+            />
+            <label mdbLabel class="form-label" for="postalCode"
+              >Postal code</label
+            >
+          </mdb-form-control>
+        </div>
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="
+            (!form.valid && form.get('address.postalCode').touched) || error
+          "
+        >
+          {{ error ? error : 'Form contains errors!' }}
+        </div>
+        <div class="alert alert-success" role="alert" *ngIf="success">
+          Operation successfull!
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
+      {{ updateMode ? 'Edit restaurant' : 'Add new restaurant' }}
+    </button>
+    <button type="button" class="btn btn-secondary" (click)="modalRef.close()">
+      Close
+    </button>
+  </div>
+</form>

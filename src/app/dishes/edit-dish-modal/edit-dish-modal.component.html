@@ -1,0 +1,74 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="newRestaurant">
+    {{ updateMode ? 'Edit dish' : 'New dish' }}
+  </h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="modalRef.close()"
+  ></button>
+</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="form">
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-12">
+        <h4 class="text-center">Dish informations</h4>
+        <mdb-form-control>
+          <input
+            [mdbValidate]="true"
+            mdbInput
+            type="text"
+            id="name"
+            class="form-control"
+            formControlName="name"
+          />
+          <label mdbLabel class="form-label" for="name">Dish name</label>
+        </mdb-form-control>
+        <mdb-form-control>
+          <input
+            [mdbValidate]="true"
+            mdbInput
+            type="text"
+            id="description"
+            class="form-control"
+            formControlName="description"
+          />
+          <label mdbLabel class="form-label" for="description"
+            >Description</label
+          >
+        </mdb-form-control>
+        <mdb-form-control>
+          <input
+            [mdbValidate]="true"
+            mdbInput
+            type="number"
+            id="price"
+            class="form-control"
+            formControlName="price"
+          />
+          <label mdbLabel class="form-label" for="price">Price</label>
+        </mdb-form-control>
+      </div>
+
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="(!form.valid && form.get('price').touched) || error"
+      >
+        {{ error ? error : 'Form contains errors!' }}
+      </div>
+      <div class="alert alert-success" role="alert" *ngIf="success">
+        Operation successfull!
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
+      {{ updateMode ? 'Edit dish' : 'Add new dish' }}
+    </button>
+    <button type="button" class="btn btn-secondary" (click)="modalRef.close()">
+      Close
+    </button>
+  </div>
+</form>
