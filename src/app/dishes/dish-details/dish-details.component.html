@@ -1,0 +1,39 @@
+<div class="card mb-3" style="max-width: 540px" *ngIf="dish">
+  <div class="row g-0">
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ dish.name }}</h5>
+        <p class="card-text">
+          {{ dish.description }}
+        </p>
+        <p class="card-text">
+          <small class="text-muted">Price: {{ dish.price | currency }}</small>
+        </p>
+      </div>
+    </div>
+    <div class="col-md-4 d-flex align-items-center">
+      <!--Image can be replaced by image from backend in the future-->
+      <img
+        src="https://cdn.pixabay.com/photo/2014/11/05/15/57/salmon-518032_960_720.jpg"
+        alt="dish"
+        class="img-fluid"
+      />
+    </div>
+  </div>
+</div>
+<button
+  type="button"
+  class="btn btn-warning my-3"
+  *ngIf="admin"
+  (click)="onUpdateDish()"
+>
+  Edit dish
+</button>
+<button
+  type="button"
+  class="btn btn-danger my-3 ms-1"
+  *ngIf="admin"
+  (click)="onDeleteDish()"
+>
+  Delete dish
+</button>

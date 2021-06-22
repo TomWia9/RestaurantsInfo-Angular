@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-12 col-md-4 mb-3">
+    <h3>Select a restaurant from the list</h3>
+    <app-restaurants-list></app-restaurants-list>
+    <div class="btn btn-danger" *ngIf="admin" (click)="onNewRestaurant()">
+      New restaurant
+    </div>
+  </div>
+  <div class="col-12 col-md-6 offset-md-2 mb-3">
+    <h3>Advanced search</h3>
+    <app-advanced-search></app-advanced-search>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="alert alert-danger mb-2" *ngIf="error" role="alert">
+  {{ error }}
+</div>
+<app-loading-spinner *ngIf="loading"></app-loading-spinner>
+<div class="row">
+  <div class="col-12">
+    <app-empty-list-info
+      *ngIf="empty && !loading"
+      message="Sorry, no restaurants found"
+    ></app-empty-list-info>
+    <div class="d-flex flex-column" *ngIf="!error && !loading && !empty">
+      <div class="list-group my-3">
+        <a
+          [routerLink]="['/restaurants', restaurant.id]"
+          class="list-group-item list-group-item-action text-break"
+          *ngFor="let restaurant of restaurants.items"
+        >
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ restaurant.name }}</h5>
+            <small class="text-success">{{
+              restaurant.hasDelivery ? 'Delivery' : ''
+            }}</small>
+          </div>
+          <p class="mb-1">
+            {{ restaurant.address.city }}
+          </p>
+          <small>{{ restaurant.category }}</small>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="!error && !loading && restaurantsParams && !empty">
+    <div class="col-12">
+      <div class="d-flex justify-content-center mb-3">
+        <app-pagination
+          [paginationData]="getPaginationData()"
+          [params]="restaurantsParams"
+        ></app-pagination>
+      </div>
+    </div>
+  </div>
+</div>

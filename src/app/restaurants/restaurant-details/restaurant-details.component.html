@@ -1,0 +1,48 @@
+<div class="card mb-3" *ngIf="restaurant">
+  <!--This can be replaced with image path from backend in the future-->
+  <img
+    src="https://mdbootstrap.com/img/new/standard/city/062.jpg"
+    class="card-img-top"
+    style="max-height: 200px"
+    alt="{{ restaurant.name }}"
+  />
+  <div class="card-body">
+    <h5 class="card-title">{{ restaurant.name }}</h5>
+    <p class="card-text">
+      {{ restaurant.description }}
+    </p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Category: {{ restaurant.category }}</li>
+    <li class="list-group-item">
+      Delivery:
+      <span
+        [ngClass]="{
+          'text-success': restaurant.hasDelivery,
+          'text-danger': !restaurant.hasDelivery
+        }"
+        >{{ restaurant.hasDelivery ? 'Yes' : 'No' }}</span
+      >
+    </li>
+    <li class="list-group-item">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-6">
+            <h6>Address</h6>
+            <p class="m-0">{{ restaurant.address.city }}</p>
+            <p class="m-0">
+              {{ restaurant.address.street }}
+              {{ restaurant.address.houseNumber }}
+            </p>
+            <p class="m-0">{{ restaurant.address.postalCode }}</p>
+          </div>
+          <div class="col-6">
+            <h6>Contact</h6>
+            <small class="m-0">{{ restaurant.contactEmail }}</small>
+            <p class="m-0">{{ restaurant.contactNumber }}</p>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
